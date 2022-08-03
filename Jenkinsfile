@@ -22,7 +22,16 @@ pipeline {
         }
         stage('Using a containerisation tool'){
             steps {
-                sh "sudo ls"
+                sh "sudo ls" 
+                // Can't do this as Jenkins runs commands as a Jenkins user with own creds
+                // on vm sudo su - jenkins to log into jenkins and attempt to `sudo ls`
+                // sudo vi /etc/sudoers add jenkins ALL=(ALL) NOPASSWD: ALL (IMPORTANT TO USE VI FOR THIS)
+                // Escape with :qa!
+                // Ensure docker is installed on Jenkins machine 
+                sh "sudo docker build -t nginxImage ."
+                sh "sudo docker run -d -p 80:80 --name nginxDocker nginxImage"
+                sh "curl localhost:80"
+
             }
         }
     }
