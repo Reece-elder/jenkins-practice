@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Running a script'){
             steps {
-                sh "./cooLScript.sh"
+                sh "./coolScript.sh"
             }
         }
     }
