@@ -20,5 +20,10 @@ pipeline {
                 sh "./coolScript.sh"
             }
         }
+        stage('Using a containerisation tool'){
+            steps {
+                sh "sudo ls"
+            }
+        }
     }
 }
