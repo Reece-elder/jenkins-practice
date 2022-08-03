@@ -14,6 +14,9 @@ pipeline {
         stage('Running a script'){
             steps {
                 sh "./coolScript.sh"
+                // Permission will be denied to run this script! Need to give it permission
+                sh "ls -a"
+                sh "chmod +x coolScript.sh"
             }
         }
     }
